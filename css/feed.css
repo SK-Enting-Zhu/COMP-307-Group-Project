@@ -1,0 +1,114 @@
+/* Yu Fei Dong - 261239680 */
+/* Feed tab - announcements on the left and Upcoming events box on the right */
+
+.feed {
+	display: flex;
+	align-items: flex-start;
+	gap: 20px;
+}
+
+.posts {
+	flex: 3;
+	min-width: 0;
+}
+
+.upcoming {
+	flex: 1;
+}
+
+/* hidden until we know the user is an exec */
+#postBox {
+	display: none;
+	text-align: right;
+	margin-bottom: 20px;
+}
+
+#postBox textarea {
+	display: block;
+	height: 60px;
+	margin-bottom: 8px;
+}
+
+.post {
+	margin-bottom: 15px;
+}
+
+/* picture, name and time of the announcement on one line */
+.postTop {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+}
+
+.postTop .actions {
+	margin-left: auto;
+}
+
+.post .text {
+	margin: 10px 0;
+}
+
+.post textarea {
+	display: block;
+	height: 80px;
+	margin-bottom: 8px;
+}
+
+/* comments are under a line (same as the wireframe) */
+.comments {
+	border-top: 1px solid #999999;
+	padding-top: 10px;
+}
+
+.comment {
+	display: flex;
+	align-items: flex-start;
+	gap: 8px;
+	margin-bottom: 8px;
+	font-size: 14px;
+}
+
+.comment .pfp {
+	width: 24px;
+	height: 24px;
+	line-height: 22px;
+}
+
+.comment div {
+	flex: 1;
+	min-width: 0;
+}
+
+.commentForm {
+	display: flex;
+	gap: 8px;
+}
+
+.commentForm button {
+	background-color: white;
+	color: black;
+}
+
+/* one event of the Upcoming events box */
+.next {
+	border-top: 1px solid #CCCCCC;
+	padding-top: 8px;
+	margin-top: 8px;
+	font-size: 14px;
+	overflow-wrap: anywhere;
+}
+
+.next:first-child {
+	border-top: none;
+}
+
+/* on a phone the Upcoming events box goes under the announcements */
+@media (max-width: 600px) {
+	.feed {
+		flex-direction: column;
+	}
+	.posts, .upcoming {
+		flex: none;
+		width: 100%;
+	}
+}

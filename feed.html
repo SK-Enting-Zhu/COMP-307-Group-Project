@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<!-- Yu Fei Dong - 261239680 -->
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>McClub - Feed</title>
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/feed.css">
+	</head>
+	<body>
+		<!-- nav bar of the logged in pages -->
+		<div class="nav">
+			<a class="logo" href="myclubs.html">McClub</a>
+			<a href="foryou.html">For You</a>
+			<a href="myclubs.html">My Clubs</a>
+			<a href="createclub.html">Create Club</a>
+			<a class="pfp" href="profile.html">pfp</a>
+		</div>
+		<div class="page">
+			<!-- club image, name, tags, president and member count goes here -->
+			<div id="clubHeader"></div>
+			<div class="tabs">
+				<a id="aboutTab">About</a>
+				<a id="feedTab" class="active">Feed</a>
+				<a id="eventsTab">Events</a>
+				<a id="membersTab">Members</a>
+			</div>
+			<div class="feed">
+				<div class="posts">
+					<!-- box to write an announcement - only shown to execs -->
+					<div id="postBox">
+						<textarea id="postText" placeholder="Write an announcement..." maxlength="2000"></textarea>
+						<button onclick="addPost()">Post</button>
+					</div>
+					<!-- feed.js puts the announcements and their comments here -->
+					<div id="posts"></div>
+				</div>
+				<div class="upcoming box">
+					<b>Upcoming events</b>
+					<div id="upcoming"></div>
+				</div>
+			</div>
+		</div>
+		<div id="message"></div>
+		<script src="js/common.js"></script>
+		<script src="js/feed.js"></script>
+	</body>
+</html>

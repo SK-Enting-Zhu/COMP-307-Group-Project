@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<!-- Yu Fei Dong - 261239680 -->
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>McClub - Events</title>
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/events.css">
+	</head>
+	<body>
+		<!-- nav bar of the logged in pages -->
+		<div class="nav">
+			<a class="logo" href="myclubs.html">McClub</a>
+			<a href="foryou.html">For You</a>
+			<a href="myclubs.html">My Clubs</a>
+			<a href="createclub.html">Create Club</a>
+			<a class="pfp" href="profile.html">pfp</a>
+		</div>
+		<div class="page">
+			<!-- club image, name, tags, president and member count goes here -->
+			<div id="clubHeader"></div>
+			<div class="tabs">
+				<a id="aboutTab">About</a>
+				<a id="feedTab">Feed</a>
+				<a id="eventsTab" class="active">Events</a>
+				<a id="membersTab">Members</a>
+			</div>
+			<!-- button and form to create or edit an event - only shown to execs -->
+			<button id="newEvent" onclick="openForm()">Create event</button>
+			<form id="eventForm" class="box" onsubmit="return saveEvent()">
+				<b id="formTitle">Create event</b>
+				<label for="title">Title</label>
+				<input type="text" id="title" maxlength="100">
+				<label for="time">Date and time</label>
+				<input type="datetime-local" id="time">
+				<label for="place">Meeting point</label>
+				<input type="text" id="place" maxlength="200" placeholder="Address or name of the place">
+				<label for="description">Description</label>
+				<textarea id="description" maxlength="2000"></textarea>
+				<button type="submit" id="saveButton">Create event</button>
+				<button type="button" class="light" onclick="closeForm()">Cancel</button>
+			</form>
+			<!-- events.js puts the events here -->
+			<div id="events" class="box"></div>
+		</div>
+		<div id="message"></div>
+		<script src="js/common.js"></script>
+		<script src="js/events.js"></script>
+	</body>
+</html>
