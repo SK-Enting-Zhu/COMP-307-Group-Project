@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<!-- Yvan Yin - 261238020 -->
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>McClub - About</title>
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/club.css">
+	</head>
+	<body>
+		<!-- nav bar of the logged in pages -->
+		<div class="nav">
+			<a class="logo" href="myclubs.html">McClub</a>
+			<a href="foryou.html">For You</a>
+			<a href="myclubs.html">My Clubs</a>
+			<a href="createclub.html">Create Club</a>
+			<a class="pfp" href="profile.html">pfp</a>
+		</div>
+		<div class="page">
+			<!-- club.js puts the banner, name, category, president... here -->
+			<div id="clubHeader"></div>
+			<div class="tabs">
+				<a id="aboutTab" class="active">About</a>
+				<a id="feedTab">Feed</a>
+				<a id="eventsTab">Events</a>
+				<a id="membersTab">Members</a>
+			</div>
+			<div class="about">
+				<div class="aboutMain">
+					<div class="box">
+						<b>About</b>
+						<p class="text" id="description"></p>
+					</div>
+					<!-- about.js shows the buttons that fit the user -->
+					<div class="buttons">
+						<a class="button" id="contact">Contact</a>
+						<button id="join" onclick="join()">Join club</button>
+						<button id="leave" class="light" onclick="leave()">Leave club</button>
+						<button id="edit" class="light" onclick="openForm()">Edit club</button>
+						<button id="delete" class="light" onclick="deleteClub()">Delete club</button>
+					</div>
+				</div>
+				<div class="upcoming box">
+					<b>Upcoming events</b>
+					<div id="upcoming"></div>
+				</div>
+			</div>
+			<!-- form to edit the club - only shown to execs -->
+			<form id="clubForm" class="box clubForm" onsubmit="return saveClub()">
+				<b>Edit club</b>
+				<label for="name">Club name</label>
+				<input type="text" id="name" maxlength="100">
+				<label for="category">Category</label>
+				<select id="category">
+					<option value="">Pick a category</option>
+					<option>Coding</option>
+					<option>Music</option>
+					<option>Sports</option>
+					<option>Debate</option>
+					<option>Volunteering</option>
+					<option>Art</option>
+					<option>Gaming</option>
+					<option>Dance</option>
+					<option>Other</option>
+				</select>
+				<label for="clubDescription">Description</label>
+				<textarea id="clubDescription" maxlength="2000"></textarea>
+				<label for="requirement">Requirement to join (leave empty if none)</label>
+				<input type="text" id="requirement" maxlength="200" placeholder="Example: audition">
+				<label for="contactEmail">Contact email (optional)</label>
+				<input type="email" id="contactEmail" maxlength="100">
+				<button type="submit">Save changes</button>
+				<button type="button" class="light" onclick="closeForm()">Cancel</button>
+			</form>
+		</div>
+		<div id="message"></div>
+		<script src="js/common.js"></script>
+		<script src="js/club.js"></script>
+		<script src="js/clubform.js"></script>
+		<script src="js/about.js"></script>
+	</body>
+</html>

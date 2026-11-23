@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<!-- Yvan Yin - 261238020 -->
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>McClub - Create a Club</title>
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/club.css">
+	</head>
+	<body>
+		<!-- nav bar of the logged in pages -->
+		<div class="nav">
+			<a class="logo" href="myclubs.html">McClub</a>
+			<a href="foryou.html">For You</a>
+			<a href="myclubs.html">My Clubs</a>
+			<a href="createclub.html">Create Club</a>
+			<a class="pfp" href="profile.html">pfp</a>
+		</div>
+		<div class="page">
+			<h1>Create a club</h1>
+			<p class="time">You will be the president of the club. You can change these details later from the About tab.</p>
+			<form id="clubForm" class="box clubForm create" onsubmit="return createClub()">
+				<label for="name">Club name</label>
+				<input type="text" id="name" maxlength="100">
+				<label for="category">Category</label>
+				<select id="category">
+					<option value="">Pick a category</option>
+					<option>Coding</option>
+					<option>Music</option>
+					<option>Sports</option>
+					<option>Debate</option>
+					<option>Volunteering</option>
+					<option>Art</option>
+					<option>Gaming</option>
+					<option>Dance</option>
+					<option>Other</option>
+				</select>
+				<label for="clubDescription">Description</label>
+				<textarea id="clubDescription" maxlength="2000" placeholder="What does your club do?"></textarea>
+				<label for="requirement">Requirement to join (leave empty if none)</label>
+				<input type="text" id="requirement" maxlength="200" placeholder="Example: audition">
+				<label for="contactEmail">Contact email (optional)</label>
+				<input type="email" id="contactEmail" maxlength="100">
+				<button type="submit">Create club</button>
+			</form>
+		</div>
+		<div id="message"></div>
+		<script src="js/common.js"></script>
+		<script src="js/clubform.js"></script>
+		<script src="js/createclub.js"></script>
+	</body>
+</html>
