@@ -1,0 +1,224 @@
+/* Yvan Yin - 261238020 */
+/* club header, About tab, Members tab and Create a Club page */
+
+/* ---------- club header (club.js) ---------- */
+
+/* grey box like the banner of the wireframe */
+.banner {
+	height: 140px;
+	background-color: #DDDDDD;
+	border-radius: 6px;
+}
+
+.clubName {
+	margin: 15px 0 8px 0;
+	font-size: 26px;
+	overflow-wrap: anywhere;
+}
+
+.tags {
+	margin-bottom: 15px;
+}
+
+/* small box with a border for the category and the role */
+.tag {
+	display: inline-block;
+	border: 1px solid #999999;
+	border-radius: 4px;
+	padding: 2px 8px;
+	margin-right: 6px;
+	font-size: 13px;
+}
+
+/* President, Founded, Members, Requirement - 4 boxes side by side */
+.facts {
+	display: flex;
+	gap: 10px;
+	margin-bottom: 20px;
+}
+
+.fact {
+	flex: 1;
+	min-width: 0;
+	border: 1px dashed #999999;
+	border-radius: 4px;
+	padding: 8px;
+	font-size: 14px;
+	overflow-wrap: anywhere;
+}
+
+/* ---------- About tab ---------- */
+
+/* description on the left and Upcoming events on the right */
+.about {
+	display: flex;
+	align-items: flex-start;
+	gap: 20px;
+}
+
+.aboutMain {
+	flex: 3;
+	min-width: 0;
+}
+
+.about .upcoming {
+	flex: 1;
+}
+
+.buttons {
+	margin-top: 15px;
+}
+
+/* hidden until we know who the user is (about.js) */
+.buttons button, .buttons a {
+	display: none;
+	margin: 0 8px 8px 0;
+}
+
+/* a link that looks like the black button */
+a.button {
+	background-color: black;
+	color: white;
+	border: 1px solid black;
+	border-radius: 4px;
+	padding: 6px 12px;
+	font-size: 14px;
+	text-decoration: none;
+}
+
+/* one event of the Upcoming events box
+	starts with .about so it doesnt change the .next of feed.css (Feed tab) */
+.about .next {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	border-top: 1px solid #CCCCCC;
+	padding-top: 8px;
+	margin-top: 8px;
+	font-size: 14px;
+	overflow-wrap: anywhere;
+}
+
+.about .next:first-child {
+	border-top: none;
+}
+
+/* MMM DD square of the wireframe */
+.about .date {
+	flex-shrink: 0;
+	width: 40px;
+	border: 1px solid #999999;
+	border-radius: 4px;
+	text-align: center;
+	font-size: 12px;
+	padding: 2px;
+}
+
+.about .more {
+	display: block;
+	margin-top: 10px;
+	color: #888888;
+	font-size: 13px;
+}
+
+/* ---------- forms (Create a Club and Edit club) ---------- */
+
+/* the edit form of the About tab stays hidden until an exec opens it */
+#clubForm {
+	display: none;
+	margin-top: 20px;
+}
+
+/* the Create a Club form is always shown */
+#clubForm.create {
+	display: block;
+	max-width: 600px;
+}
+
+.clubForm label {
+	display: block;
+	font-size: 14px;
+	margin: 12px 0 4px 0;
+}
+
+.clubForm textarea {
+	display: block;
+	height: 100px;
+	margin-bottom: 12px;
+}
+
+/* style.css doesnt have these two kinds of fields */
+.clubForm select, .clubForm input[type=email] {
+	width: 100%;
+	padding: 8px;
+	border: 1px solid #999999;
+	border-radius: 4px;
+	font-family: Arial, sans-serif;
+	font-size: 14px;
+	background-color: white;
+}
+
+.clubForm input[type=email] {
+	margin-bottom: 12px;
+}
+
+/* ---------- Members tab ---------- */
+
+#search {
+	margin-bottom: 15px;
+}
+
+#members {
+	padding: 0 12px;
+}
+
+/* picture, name, role and actions on one line */
+.member {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 0;
+	border-top: 1px solid #CCCCCC;
+}
+
+.member:first-child {
+	border-top: none;
+}
+
+.member .who {
+	flex: 1;
+	min-width: 0;
+	overflow-wrap: anywhere;
+}
+
+/* ---------- phone ---------- */
+@media (max-width: 600px) {
+	/* the 4 boxes go 2 by 2 */
+	.facts {
+		flex-wrap: wrap;
+	}
+	.fact {
+		flex: 1 1 40%;
+	}
+	/* Upcoming events goes under the description */
+	.about {
+		flex-direction: column;
+	}
+	.aboutMain, .about .upcoming {
+		flex: none;
+		width: 100%;
+	}
+	/* the actions go on their own line under the name
+		so the name keeps the whole width (46px = picture 36px + gap 10px) */
+	.member {
+		flex-wrap: wrap;
+	}
+	.member .actions {
+		flex-basis: 100%;
+		margin-left: 46px;
+	}
+	.member .actions a {
+		margin-left: 0;
+		margin-right: 10px;
+	}
+}

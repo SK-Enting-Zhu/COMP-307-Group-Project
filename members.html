@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<!-- Yvan Yin - 261238020 -->
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>McClub - Members</title>
+		<link rel="stylesheet" href="css/style.css">
+		<link rel="stylesheet" href="css/club.css">
+	</head>
+	<body>
+		<!-- nav bar of the logged in pages -->
+		<div class="nav">
+			<a class="logo" href="myclubs.html">McClub</a>
+			<a href="foryou.html">For You</a>
+			<a href="myclubs.html">My Clubs</a>
+			<a href="createclub.html">Create Club</a>
+			<a class="pfp" href="profile.html">pfp</a>
+		</div>
+		<div class="page">
+			<!-- club.js puts the banner, name, category, president... here -->
+			<div id="clubHeader"></div>
+			<div class="tabs">
+				<a id="aboutTab">About</a>
+				<a id="feedTab">Feed</a>
+				<a id="eventsTab">Events</a>
+				<a id="membersTab" class="active">Members</a>
+			</div>
+			<input type="text" id="search" placeholder="Search members..." onkeyup="showMembers()">
+			<!-- members.js puts the members here -->
+			<div id="members" class="box"></div>
+		</div>
+		<div id="message"></div>
+		<script src="js/common.js"></script>
+		<script src="js/club.js"></script>
+		<script src="js/members.js"></script>
+	</body>
+</html>
