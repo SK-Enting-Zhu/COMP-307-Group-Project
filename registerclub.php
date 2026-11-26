@@ -60,7 +60,7 @@ $stmt->bind_param("ssssi", $clubName, $clubDesc, $tags, $newFileName, $userId);
 $stmt->execute();
 
 $clubId = $conn->insert_id;
-$stmt2 = $conn->prepare("INSERT INTO members (club_id, user_id, role, joined) VALUES (?, ?, 'president', CURDATE())");
+$stmt2 = $conn->prepare("INSERT INTO members (club_id, user_id, role, joined) VALUES (?, ?, 'exec', CURDATE())");
 $stmt2->bind_param("ii", $clubId, $userId);
 $stmt2->execute();
 
