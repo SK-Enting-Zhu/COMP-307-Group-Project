@@ -66,7 +66,11 @@ function leave() {
 // shows the form filled with the club so an exec can change it
 function openForm() {
 	document.getElementById("name").value = decode(clubInfo.name);
-	document.getElementById("category").value = decode(clubInfo.category);
+	var tags = [];
+	for (var i = 0; i < clubInfo.tags.length; i++) {
+		tags.push(decode(clubInfo.tags[i]));
+	}
+	showTagChoices(tags);
 	document.getElementById("clubDescription").value = decode(clubInfo.description);
 	document.getElementById("requirement").value = decode(clubInfo.requirement);
 	document.getElementById("contactEmail").value = decode(clubInfo.contact);
@@ -95,7 +99,7 @@ function saveClub() {
 function deleteClub() {
 	if (confirm("Delete this club? Its members, announcements and events will be deleted too. This cannot be undone.")) {
 		send("php/club.php", "action=delete", function(data) {
-			window.location.href = "myclubs.html";
+			window.location.href = "myclubs.php";
 		});
 	}
 }

@@ -5,9 +5,16 @@
 
 /* grey box like the banner of the wireframe */
 .banner {
+	display: block;
+	width: 100%;
 	height: 140px;
 	background-color: #DDDDDD;
 	border-radius: 6px;
+}
+
+/* the club picture fills the banner without being stretched */
+img.banner {
+	object-fit: cover;
 }
 
 .clubName {
@@ -20,7 +27,7 @@
 	margin-bottom: 15px;
 }
 
-/* small box with a border for the category and the role */
+/* small box with a border for the tags and the role */
 .tag {
 	display: inline-block;
 	border: 1px solid #999999;
@@ -160,6 +167,13 @@ a.button {
 
 .clubForm input[type=email] {
 	margin-bottom: 12px;
+}
+
+/* the tag checkboxes go side by side and wrap to the next line */
+.clubForm .tagChoices label {
+	display: inline-block;
+	margin: 4px 14px 4px 0;
+	white-space: nowrap;
 }
 
 /* ---------- Members tab ---------- */

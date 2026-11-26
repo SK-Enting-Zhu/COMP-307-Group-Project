@@ -11,14 +11,14 @@
 	<body>
 		<!-- nav bar of the logged in pages -->
 		<div class="nav">
-			<a class="logo" href="myclubs.html">McClub</a>
-			<a href="foryou.html">For You</a>
-			<a href="myclubs.html">My Clubs</a>
-			<a href="createclub.html">Create Club</a>
-			<a class="pfp" href="profile.html">pfp</a>
+			<a class="logo" href="myclubs.php">McClub</a>
+			<a href="foryou.php">For You</a>
+			<a href="myclubs.php">My Clubs</a>
+			<a href="createclub.php">Create Club</a>
+			<a class="pfp" href="profile.php">pfp</a>
 		</div>
 		<div class="page">
-			<!-- club.js puts the banner, name, category, president... here -->
+			<!-- club.js puts the banner, name, tags, president... here -->
 			<div id="clubHeader"></div>
 			<div class="tabs">
 				<a id="aboutTab" class="active">About</a>
@@ -51,19 +51,9 @@
 				<b>Edit club</b>
 				<label for="name">Club name</label>
 				<input type="text" id="name" maxlength="100">
-				<label for="category">Category</label>
-				<select id="category">
-					<option value="">Pick a category</option>
-					<option>Coding</option>
-					<option>Music</option>
-					<option>Sports</option>
-					<option>Debate</option>
-					<option>Volunteering</option>
-					<option>Art</option>
-					<option>Gaming</option>
-					<option>Dance</option>
-					<option>Other</option>
-				</select>
+				<label>Tags (pick at least one)</label>
+				<!-- clubform.js puts one checkbox per tag here -->
+				<div id="tagChoices" class="tagChoices"></div>
 				<label for="clubDescription">Description</label>
 				<textarea id="clubDescription" maxlength="2000"></textarea>
 				<label for="requirement">Requirement to join (leave empty if none)</label>

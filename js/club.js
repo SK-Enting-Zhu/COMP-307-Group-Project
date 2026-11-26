@@ -1,5 +1,5 @@
 // Yvan Yin - 261238020
-// header of a club page - banner, name, category, role, president, founded, members, requirement
+// header of a club page - banner, name, tags, role, president, founded, members, requirement
 // it goes in the <div id="clubHeader"> of the About, Feed, Events and Members tabs
 // needs common.js first (send and club)
 // texts coming from the server already went through htmlspecialchars
@@ -36,11 +36,20 @@ function showHeader(done) {
 		if (founded == "") {
 			founded = "-";
 		}
-		// grey banner like the wireframe (clubs dont have a picture yet)
+		// one small box per tag of the club
+		var tags = "";
+		for (var i = 0; i < data.tags.length; i++) {
+			tags += '<span class="tag">' + data.tags[i] + '</span>';
+		}
+		// the picture of the club (from Create Club) - a grey banner like the wireframe if there is none
+		var banner = '<div class="banner"></div>';
+		if (data.image != "") {
+			banner = '<img class="banner" src="clubsImage/' + data.image + '" alt="Picture of the club">';
+		}
 		document.getElementById("clubHeader").innerHTML =
-			'<div class="banner"></div>' +
+			banner +
 			'<h1 class="clubName" id="clubName">' + data.name + '</h1>' +
-			'<div class="tags"><span class="tag" id="clubCategory">' + data.category + '</span>' + badge + '</div>' +
+			'<div class="tags" id="clubTags">' + tags + badge + '</div>' +
 			'<div class="facts">' +
 			'<div class="fact"><span class="time">President</span><br><b>' + data.presidentName + '</b></div>' +
 			'<div class="fact"><span class="time">Founded</span><br><b>' + founded + '</b></div>' +

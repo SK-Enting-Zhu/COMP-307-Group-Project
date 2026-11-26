@@ -9,23 +9,36 @@ require "db.php";
 require "check.php";
 header("Content-Type: application/json");
 
-// the categories are the interests of the sign up page
-// the club category has to be one of them so For You can match it
-$categories = ["Coding", "Music", "Sports", "Debate", "Volunteering", "Art", "Gaming", "Dance", "Other"];
+// the tags a club can have - same list as the Create Club page of P2 (createclub.php)
+// they are saved in clubs.tags as one string like "Music,Chess,Film" so For You can match them
+$tagNames = ["Anime", "Music", "Reading", "Chess", "Games", "Biology", "Film", "Dance", "Biking", "Hiking", "Coding", "Sport"];
 
 // checks the fields of the create and edit forms
 // ends the script with a message if something is wrong
-function checkFields($categories) {
+// the tags come as one field like "Music,Chess" and go back as the same kind of string
+function checkFields($tagNames) {
 	$name = trim($_POST["name"] ?? "");
-	$category = trim($_POST["category"] ?? "");
 	$description = trim($_POST["description"] ?? "");
 	$requirement = trim($_POST["requirement"] ?? "");
 	$contact = trim($_POST["contact"] ?? "");
+	$tags = [];
+	foreach (explode(",", $_POST["tags"] ?? "") as $tag) {
+		$tag = trim($tag);
+		if ($tag == "") {
+			continue;
+		}
+		if (!in_array($tag, $tagNames)) {
+			stop("Please pick tags from the list.");
+		}
+		if (!in_array($tag, $tags)) {
+			$tags[] = $tag;
+		}
+	}
 	if ($name == "" || $description == "") {
 		stop("Please fill in the name and the description of the club.");
 	}
-	if (!in_array($category, $categories)) {
-		stop("Please pick a category.");
+	if (count($tags) == 0) {
+		stop("Please pick at least one tag.");
 	}
 	// mb_strlen counts characters like the browser (maxlength) and MySQL (VARCHAR) do
 	// strlen would count bytes, so a name with accents (é = 2 bytes) would look too long
@@ -35,7 +48,19 @@ function checkFields($categories) {
 	if ($contact != "" && (mb_strlen($contact) > 100 || !filter_var($contact, FILTER_VALIDATE_EMAIL))) {
 		stop("The contact has to be an email address.");
 	}
-	return [$name, $category, $description, $requirement, $contact];
+	return [$name, implode(",", $tags), $description, $requirement, $contact];
+}
+
+// the tags string of the database as a list, ready to be shown
+// clubs made before the tags existed can have NULL or ""
+function tagList($tags) {
+	$list = [];
+	foreach (explode(",", $tags ?? "") as $tag) {
+		if (trim($tag) != "") {
+			$list[] = htmlspecialchars(trim($tag));
+		}
+	}
+	return $list;
 }
 
 // two clubs cant have the same name
@@ -54,11 +79,11 @@ $club = intval($_POST["club"] ?? 0);
 $action = $_POST["action"] ?? "";
 
 if ($action == "create") {
-	list($name, $category, $description, $requirement, $contact) = checkFields($categories);
+	list($name, $tags, $description, $requirement, $contact) = checkFields($tagNames);
 	checkName($conn, $name, 0);
 	$today = date("Y-m-d");
-	$stmt = $conn->prepare("INSERT INTO clubs (name, description, president_id, category, requirement, contact, founded) VALUES (?, ?, ?, ?, ?, ?, ?)");
-	$stmt->bind_param("ssissss", $name, $description, $user["id"], $category, $requirement, $contact, $today);
+	$stmt = $conn->prepare("INSERT INTO clubs (name, description, president_id, tags, requirement, contact, founded) VALUES (?, ?, ?, ?, ?, ?, ?)");
+	$stmt->bind_param("ssissss", $name, $description, $user["id"], $tags, $requirement, $contact, $today);
 	$stmt->execute();
 	$id = $conn->insert_id;
 	// the president is also an exec of the club (see README)
@@ -70,7 +95,7 @@ if ($action == "create") {
 }
 
 // every other action is about an existing club
-$stmt = $conn->prepare("SELECT clubs.id, clubs.name, clubs.description, clubs.category, clubs.requirement, clubs.contact, clubs.founded, clubs.president_id, users.full_name FROM clubs JOIN users ON clubs.president_id = users.id WHERE clubs.id = ?");
+$stmt = $conn->prepare("SELECT clubs.id, clubs.name, clubs.description, clubs.tags, clubs.image, clubs.requirement, clubs.contact, clubs.founded, clubs.president_id, users.full_name FROM clubs JOIN users ON clubs.president_id = users.id WHERE clubs.id = ?");
 $stmt->bind_param("i", $club);
 $stmt->execute();
 $row = $stmt->get_result()->fetch_assoc();
@@ -109,7 +134,10 @@ if ($action == "info") {
 	echo json_encode([
 		"name" => htmlspecialchars($row["name"]),
 		"description" => htmlspecialchars($row["description"]),
-		"category" => htmlspecialchars($row["category"]),
+		"tags" => tagList($row["tags"]),
+		// file name of the club picture in clubsImage/ (uploaded by Create Club of P2) - "" if none
+		// basename keeps only the file name so the path cant leave the folder
+		"image" => htmlspecialchars(basename($row["image"] ?? "")),
 		"requirement" => htmlspecialchars($row["requirement"]),
 		"contact" => htmlspecialchars($row["contact"]),
 		"founded" => $founded,
@@ -124,10 +152,10 @@ else if ($action == "edit") {
 	if (!$exec) {
 		stop("Only execs can edit the club.");
 	}
-	list($name, $category, $description, $requirement, $contact) = checkFields($categories);
+	list($name, $tags, $description, $requirement, $contact) = checkFields($tagNames);
 	checkName($conn, $name, $club);
-	$stmt = $conn->prepare("UPDATE clubs SET name = ?, category = ?, description = ?, requirement = ?, contact = ? WHERE id = ?");
-	$stmt->bind_param("sssssi", $name, $category, $description, $requirement, $contact, $club);
+	$stmt = $conn->prepare("UPDATE clubs SET name = ?, tags = ?, description = ?, requirement = ?, contact = ? WHERE id = ?");
+	$stmt->bind_param("sssssi", $name, $tags, $description, $requirement, $contact, $club);
 	$stmt->execute();
 	echo json_encode(["ok" => true]);
 }
