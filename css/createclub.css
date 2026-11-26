@@ -1,0 +1,171 @@
+/* Stephen Chen 261233356 */
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: Arial, sans-serif;
+	font-size: 20px;
+	color: black;
+}
+
+/* nav bar at the top of the logged in pages */
+.nav {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 10px 30px;
+	padding: 12px 30px;
+	border-bottom: 1px solid #999999;
+}
+
+.nav a {
+	color: #888888;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.nav a.active {
+	color: black;
+	text-decoration: underline;
+}
+
+.nav .logo {
+	color: #ed1b2f;
+	font-size: 24px;
+}
+
+/* profile picture goes on the right side */
+.nav .pfp {
+	margin-left: auto;
+}
+
+/* round picture of a user */
+.pfp {
+	flex-shrink: 0;
+	width: 40px;
+	height: 40px;
+	line-height: 38px;
+	border: 1px solid #999999;
+	border-radius: 50%;
+	text-align: center;
+	font-size: 16px;
+	font-weight: normal;
+	color: black;
+	object-fit: cover;
+}
+
+/* content under the nav bar */
+.page {
+	/* border: 1px solid aquamarine; */
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+.pageDesc {
+	/* border: 1px solid greenyellow; */
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+
+.clubForm {
+	/* border: 1px solid goldenrod; */
+	display: grid;
+    grid-template-columns: 1fr;
+    gap: 12px;
+}
+
+.clubFormRow {
+	display: grid;
+	grid-template-columns: 1fr;
+}
+
+label, input, textarea {
+	font-size: 16px;
+	font-family: inherit;
+}
+
+input, textarea {
+	border: 1px solid #000000;
+	border-radius: 5px;
+	outline: none;
+	padding: 10px 10px;
+}
+
+textarea {
+	resize: vertical;
+	min-height: 40px;
+	max-height: 325px;
+}
+
+.tagContainer {
+	display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* Hiding checkbox squares */
+.tagCheckbox {
+    display: none;
+}
+
+/* Make the label look like a pill button */
+.tagLabel {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+    border-radius: 20px; 
+    padding: 5px 15px;
+    font-size: 14px;
+    cursor: pointer;
+	user-select: none;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.tagLabel:hover {
+    background-color: #f0f0f0;
+}
+
+.tagCheckbox:checked + .tagLabel {
+    background-color: black;
+    color: white;
+}
+
+label[for="clubImage"] {
+    pointer-events: none;
+}
+
+#clubImage {
+	border: none;
+	width: 220px;
+	padding: 0;
+	padding-left: 1px;
+}
+
+#clubImage::file-selector-button {
+	cursor: pointer;
+	font-family: inherit;
+	font-size: 15px;
+}
+
+input[type=submit] {
+	background-color: #000000;
+	color: #ffffff;
+	border: none;
+	transition: background-color 0.5s;
+}
+
+input[type=submit]:hover {
+    cursor: pointer;
+	background-color: #ed1b2f;
+}
+
+@media (max-width: 600px) {
+	.nav {
+        gap: 10px 15px;
+		padding: 12px 15px;
+	}
+}
