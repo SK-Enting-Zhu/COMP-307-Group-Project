@@ -1,0 +1,121 @@
+/* Stephen Chen 261233356 */
+
+* {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 0;
+	font-family: Arial, sans-serif;
+	font-size: 20px;
+	color: black;
+}
+
+/* nav bar at the top of the logged in pages */
+.nav {
+	display: flex;
+	align-items: center;
+	flex-wrap: wrap;
+	gap: 10px 30px;
+	padding: 12px 30px;
+	border-bottom: 1px solid #999999;
+}
+
+.nav a {
+	color: #888888;
+	font-weight: bold;
+	text-decoration: none;
+}
+
+.nav a.active {
+	color: black;
+	text-decoration: underline;
+}
+
+.nav .logo {
+	color: #ed1b2f;
+	font-size: 24px;
+}
+
+/* profile picture goes on the right side */
+.nav .pfp {
+	margin-left: auto;
+}
+
+/* round picture of a user */
+.pfp {
+	flex-shrink: 0;
+	width: 40px;
+	height: 40px;
+	line-height: 38px;
+	border: 1px solid #999999;
+	border-radius: 50%;
+	text-align: center;
+	font-size: 16px;
+	font-weight: normal;
+	color: black;
+	object-fit: cover;
+}
+
+/* content under the nav bar */
+.page {
+	/* border: 1px solid aquamarine; */
+	max-width: 900px;
+	margin: 0 auto;
+	padding: 20px;
+}
+
+.clubsContainer {
+    /* border: 1px solid red; */
+    display: grid;
+    grid-template-columns: 250px 250px 250px;
+    gap: 20px;
+    justify-content: center;
+}
+
+.club {
+    border: 1px solid #999999;
+    border-radius: 15px 15px 3px 3px;
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.3);
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+}
+
+.club:hover {
+    cursor: pointer;
+    box-shadow: 0px 10px 20px 0px rgba(0, 0, 0, 0.4);
+    transform: translateY(-5px);
+}
+
+.club a {
+	text-decoration: none;
+	color: black;
+}
+
+.clubImage img {
+    width: 100%;
+    height: 150px;
+    border-radius: 15px 15px 0 0;
+}
+
+.clubName {
+    padding: 8px 5px;
+}
+
+@media (max-width: 830px) {
+    .clubsContainer {
+        grid-template-columns: 250px 250px;
+    }
+}
+
+@media (max-width: 600px) {
+	.nav {
+        gap: 10px 15px;
+		padding: 12px 15px;
+	}
+}
+
+@media (max-width: 560px) {
+    .clubsContainer {
+        grid-template-columns: 250px;
+    }
+}
